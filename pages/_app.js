@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import 'antd/dist/antd.css';
-
 import wrapper from '../store/configureStore';
+import withReduxSaga from 'next-redux-saga';
 
 const NodeBird = ({ Component }) => (
   <>
@@ -23,4 +23,4 @@ export function reportWebVitals(metric) {
   console.log(metric);
 }
 
-export default wrapper.withRedux(NodeBird);
+export default wrapper.withRedux(withReduxSaga(NodeBird));
