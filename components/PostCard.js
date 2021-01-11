@@ -1,21 +1,21 @@
-import React, { useState, useCallback } from 'react';
-import { Card, Button, Avatar, Popover, List, Comment } from 'antd';
-import PropTypes from 'prop-types';
+import React, { useState, useCallback } from "react";
+import { Card, Button, Avatar, Popover, List, Comment } from "antd";
+import PropTypes from "prop-types";
 import {
   RetweetOutlined,
   HeartTwoTone,
   HeartOutlined,
   MessageOutlined,
   EllipsisOutlined,
-} from '@ant-design/icons';
-import styled from 'styled-components';
-import Link from 'next/link';
-import { useSelector } from 'react-redux';
+} from "@ant-design/icons";
+import styled from "styled-components";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
-import CommentForm from './CommentForm';
-import PostCardContent from './PostCardContent';
-import PostImages from './PostImages';
-import FollowButton from './FollowButton';
+import CommentForm from "./CommentForm";
+import PostCardContent from "./PostCardContent";
+import PostImages from "./PostImages";
+// import FollowButton from './FollowButton';
 
 const CardWrapper = styled.div`
   margin-bottom: 20px;
@@ -69,7 +69,7 @@ const PostCard = ({ post }) => {
             <EllipsisOutlined />
           </Popover>,
         ]}
-        extra={<FollowButton post={post} />}
+        // extra={<FollowButton post={post} />}
       >
         <Card.Meta
           avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
@@ -90,7 +90,7 @@ const PostCard = ({ post }) => {
                   author={item.User.nickname}
                   avatar={
                     <Link
-                      href={{ pathname: '/user', query: { id: item.User.id } }}
+                      href={{ pathname: "/user", query: { id: item.User.id } }}
                       as={`/user/${item.User.id}`}
                     >
                       <a>
