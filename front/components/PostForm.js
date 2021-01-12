@@ -1,12 +1,12 @@
-import React, { useRef, useCallback, useState, useEffect } from 'react';
-import { Form, Input, Button } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { addPost } from '../reducer/post';
+import React, { useRef, useCallback, useEffect } from "react";
+import { Form, Input, Button } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import useInput from "../hooks/useInput";
+import { addPost } from "../reducer/post";
 
 const PostForm = () => {
-  const { imagePaths, postAdded } = useSelector((state) => state.post);
-  const [text, setText] = useState('');
+  const { imagePaths, addPostDone } = useSelector((state) => state.post);
+  const [text, onChangeText, setText] = useInput("");
   const dispatch = useDispatch();
   const imageInput = useRef();
 
@@ -15,23 +15,18 @@ const PostForm = () => {
   }, [imageInput.current]);
 
   useEffect(() => {
-    if (postAdded) {
-      setText('');
+    if (addPostDone) {
+      setText("");
     }
-  }, [postAdded]);
-
-  const onChangeText = useCallback((e) => {
-    setText(e.target.value);
-  }, []);
+  }, [addPostDone]);
 
   const onSubmit = useCallback(() => {
-    dispatch(addPost);
-    setText('');
-  }, []);
+    dispatch(addPost(text));
+  }, [text]);
 
   return (
     <Form
-      style={{ margin: '10px 0 20px' }}
+      style={{ margin: "10px 0 20px" }}
       encType="multipart/form-data"
       onFinish={onSubmit}
     >
@@ -44,17 +39,17 @@ const PostForm = () => {
       <div>
         <input type="file" multiple hidden ref={imageInput} />
         <Button onClick={onClickImageUpload}>이미지 업로드</Button>
-        <Button type="primary" style={{ float: 'right' }} htmlType="submit">
+        <Button type="primary" style={{ float: "right" }} htmlType="submit">
           짹짹
         </Button>
       </div>
       <div>
         {imagePaths.map((v) => {
           return (
-            <div key={v} style={{ display: 'inline-block' }}>
+            <div key={v} style={{ display: "inline-block" }}>
               <img
-                src={'http://localhost:3000/' + v}
-                style={{ width: '200px' }}
+                src={"http://localhost:3000/" + v}
+                style={{ width: "200px" }}
                 alt={v}
               />
               <div>

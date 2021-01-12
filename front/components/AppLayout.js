@@ -1,13 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
-import PropTypes from 'prop-types';
-import { Col, Input, Menu, Row } from 'antd';
-import LoginForm from './LoginForm';
-import UserProfile from './UserProfile';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { createGlobalStyle } from 'styled-components';
-
+import React from "react";
+import Link from "next/link";
+import PropTypes from "prop-types";
+import { Col, Input, Menu, Row } from "antd";
+import LoginForm from "./LoginForm";
+import UserProfile from "./UserProfile";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
   .ant-row {
@@ -35,7 +34,7 @@ const SearchInput = styled(Input.Search)`
 `;
 
 const AppLayout = ({ children }) => {
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { me } = useSelector((state) => state.user);
 
   return (
     <div>
@@ -57,7 +56,8 @@ const AppLayout = ({ children }) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn ? <UserProfile /> : <LoginForm />}
+          {/* 내 정보가 있으면 UserProfile 없으면 LoginForm */}
+          {me ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}
