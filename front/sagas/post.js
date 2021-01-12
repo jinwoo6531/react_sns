@@ -1,4 +1,4 @@
-import { all, fork, takeLatest, put, delay } from 'redux-saga/effects';
+import { all, fork, takeLatest, put, delay } from "redux-saga/effects";
 import {
   ADD_POST_SUCCESS,
   ADD_POST_FAILURE,
@@ -6,13 +6,13 @@ import {
   ADD_COMMENT_FAILURE,
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
-} from '../reducer/post';
+} from "../reducer/post";
 
 //addPost
 // function addPostAPI(data) {
 //   return axios.post("/api/addPost", data);
 // }
-function* addPost() {
+function* addPost(action) {
   try {
     //call은 동기
     //fork는 비동기
@@ -21,6 +21,7 @@ function* addPost() {
     yield put({
       //put은 dispatch와 같은 개념이다.
       type: ADD_POST_SUCCESS,
+      data: action.data,
     });
   } catch (error) {
     yield put({
@@ -43,6 +44,7 @@ function* addComment(action) {
     yield put({
       //put은 dispatch와 같은 개념이다.
       type: ADD_COMMENT_SUCCESS,
+      data: action.data,
     });
   } catch (error) {
     yield put({

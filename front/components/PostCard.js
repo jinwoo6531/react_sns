@@ -38,7 +38,7 @@ const PostCard = ({ post }) => {
   return (
     <CardWrapper key={post.id}>
       <Card
-        cover={post.Images[0] && <PostImages images={post.Images} />}
+        cover={post && post.Images[0] && <PostImages images={post.Images} />}
         actions={[
           <RetweetOutlined key="retweet" />,
           liked ? (
