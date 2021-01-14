@@ -1,16 +1,23 @@
-module.exports = (sequelize, DataTypes) => {
-    const Image = sequelize.define("Image", { //MySQL에는 users 테이블 생성
-        //사용자 정보
-        //id는 고유한값이라 mysql에서 자동으로 넣어준다.
-        src: {
-            type: DataTypes.STRING(200),
-            allowNull: false,
-        }
-    }, {
-    charset:'utf8',
-    collate:'utf8_general_ci', //한글저장
-    });
-    Image.associate = (db) => {};
+const DataTypes = require('sequelize');
+const { Model } = DataTypes;
 
-    return Image;
-}
+module.exports = class Image extends Model {
+  static init(sequelize) {
+    return super.init({
+      // id가 기본적으로 들어있다.
+      src: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+      },
+    }, {
+      modelName: 'Image',
+      tableName: 'images',
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
+      sequelize,
+    });
+  }
+  static associate(db) {
+    db.Image.belongsTo(db.Post);
+  }
+};
