@@ -21,14 +21,6 @@ const Global = createGlobalStyle`
   }
 `;
 
-// const dummy = {
-//   nickname: '제로초',
-//   Post: [],
-//   Followings: [],
-//   Followers: [],
-//   isLoggedIn: false,
-// };
-
 const SearchInput = styled(Input.Search)`
   vertical-align: middle;
 `;
@@ -42,7 +34,7 @@ const AppLayout = ({ children }) => {
       <Menu mode="horizontal">
         <Menu.Item key="home">
           <Link href="/">
-            <a>노드버드</a>
+            <a>홈</a>
           </Link>
         </Menu.Item>
         <Menu.Item key="profile">
