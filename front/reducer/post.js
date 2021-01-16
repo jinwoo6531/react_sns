@@ -1,4 +1,4 @@
-import shortId from "shortid";
+import shortId from 'shortid';
 
 export const initialState = {
   mainPosts: [
@@ -6,33 +6,35 @@ export const initialState = {
       id: 1,
       User: {
         id: 1,
-        nickname: "제로초",
+        nickname: '제로초',
       },
-      content: "첫 번째 게시글",
+      content: '첫 번째 게시글',
       Images: [
         {
           src:
-            "https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726",
+            'https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726',
         },
         {
-          src: "https://gimg.gilbut.co.kr/book/BN001958/rn_view_BN001958.jpg",
+          src: 'https://gimg.gilbut.co.kr/book/BN001958/rn_view_BN001958.jpg',
         },
         {
-          src: "https://gimg.gilbut.co.kr/book/BN001998/rn_view_BN001998.jpg",
+          src: 'https://gimg.gilbut.co.kr/book/BN001998/rn_view_BN001998.jpg',
         },
       ],
       Comments: [
         {
+          id: shortId.generate(),
           User: {
-            nickname: "nero",
+            nickname: 'nero',
           },
-          content: "우와 개정판이 나왔군요~",
+          content: '우와 개정판이 나왔군요~',
         },
         {
+          id: shortId.generate(),
           User: {
-            nickname: "hero",
+            nickname: 'hero',
           },
-          content: "얼른 사고싶어요~",
+          content: '얼른 사고싶어요~',
         },
       ],
     },
@@ -46,13 +48,13 @@ export const initialState = {
   addCommentError: null,
 };
 
-export const ADD_POST_REQUEST = "ADD_POST_REQUEST";
-export const ADD_POST_SUCCESS = "ADD_POST_SUCCESS";
-export const ADD_POST_FAILURE = "ADD_POST_FAILURE";
+export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
+export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
+export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 
-export const ADD_COMMENT_REQUEST = "ADD_COMMENT_REQUEST";
-export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
-export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
+export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
+export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
+export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
 export const addPost = () => ({
   type: ADD_POST_REQUEST,
@@ -67,7 +69,7 @@ const dummyPost = (data) => ({
   content: data,
   User: {
     id: 1,
-    nickname: "제로초",
+    nickname: '제로초',
   },
   Images: [],
   Comments: [],
@@ -78,7 +80,7 @@ const dummyComment = (data) => ({
   content: data,
   User: {
     id: 1,
-    nickname: "제로초",
+    nickname: '제로초',
   },
 });
 
