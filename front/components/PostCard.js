@@ -1,20 +1,21 @@
-import React, { useState, useCallback } from "react";
-import { Card, Button, Avatar, Popover, List, Comment } from "antd";
-import PropTypes from "prop-types";
+import React, { useState, useCallback } from 'react';
+import { Card, Button, Avatar, Popover, List, Comment } from 'antd';
+import PropTypes from 'prop-types';
 import {
   RetweetOutlined,
   HeartTwoTone,
   HeartOutlined,
   MessageOutlined,
   EllipsisOutlined,
-} from "@ant-design/icons";
-import styled from "styled-components";
-import Link from "next/link";
-import { useSelector } from "react-redux";
+} from '@ant-design/icons';
+import styled from 'styled-components';
+import Link from 'next/link';
+import { useSelector, useDispatch } from 'react-redux';
 
-import CommentForm from "./CommentForm";
-import PostCardContent from "./PostCardContent";
-import PostImages from "./PostImages";
+import CommentForm from './CommentForm';
+import PostCardContent from './PostCardContent';
+import PostImages from './PostImages';
+import { REMOVE_POST_REQUEST } from '../reducer/post';
 // import FollowButton from './FollowButton';
 
 const CardWrapper = styled.div`
@@ -22,6 +23,7 @@ const CardWrapper = styled.div`
 `;
 
 const PostCard = ({ post }) => {
+  const dispatch = useDispatch();
   const [commentFormOpened, setCommentFormOpened] = useState(false);
   const id = useSelector((state) => state.user.me && state.user.me.id);
 
@@ -33,6 +35,13 @@ const PostCard = ({ post }) => {
 
   const onToggleComment = useCallback(() => {
     setCommentFormOpened((prev) => !prev);
+  }, []);
+
+  const onRemovePost = useCallback(() => {
+    dispatch({
+      type: REMOVE_POST_REQUEST,
+      data: post.id,
+    });
   }, []);
 
   return (
@@ -90,7 +99,7 @@ const PostCard = ({ post }) => {
                   author={item.User.nickname}
                   avatar={
                     <Link
-                      href={{ pathname: "/user", query: { id: item.User.id } }}
+                      href={{ pathname: '/user', query: { id: item.User.id } }}
                       as={`/user/${item.User.id}`}
                     >
                       <a>
