@@ -37,12 +37,12 @@ const PostCard = ({ post }) => {
     setCommentFormOpened((prev) => !prev);
   }, []);
 
-  const onRemovePost = useCallback(() => {
-    dispatch({
-      type: REMOVE_POST_REQUEST,
-      data: post.id,
-    });
-  }, []);
+  // const onRemovePost = useCallback(() => {
+  //   dispatch({
+  //     type: REMOVE_POST_REQUEST,
+  //     data: post.id,
+  //   });
+  // }, []);
 
   return (
     <CardWrapper key={post.id}>
